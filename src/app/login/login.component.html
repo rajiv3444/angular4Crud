@@ -1,0 +1,26 @@
+
+<h2>Login Form</h2>
+
+<form>
+  <div class="imgcontainer">
+    <img src="../../login.png" alt="Avatar" class="avatar">
+  </div>
+  
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" [(ngModel)]="user.name" placeholder="Enter Username" name="username"/>
+
+    <label><b>Password</b></label>
+    <input type="text" [(ngModel)]="user.job" placeholder="Enter Password" name="pwd" required>
+        
+    <button type="submit" (click)="Login()">Login</button>
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="submit" (click)="CreateUser()">Create User</button>
+    <button type="submit" (click)="UpdateUser()">UPdate User</button>
+  </div>
+</form>

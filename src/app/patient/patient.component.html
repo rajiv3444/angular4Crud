@@ -1,0 +1,44 @@
+<div class="container">
+  <label><b>Patient Name</b></label>
+  <input type="text" [(ngModel)]="patient.Name" placeholder="Enter nae" name="Name" />
+  <br />
+  <label><b>Patient Surname</b></label>
+  <input type="text" [(ngModel)]="patient.DOB" placeholder="Enter DOB" name="DOB" />
+  <br />
+  <label><b>Gender</b></label>
+  <select [(ngModel)]="patient.Gender">
+        <option value="0">--select--</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+  <br /> State:
+  <select [(ngModel)]="selectedStateId" (change)="OnStateChange(selectedStateId)">
+    <option value="0">--select--</option>
+    <option *ngFor="let state of states" value="{{state.Id}}">{{state.Name}}</option>
+  </select>
+  <br /> City:
+  <select>
+      <option value="{{selectedCityId}}">--select--</option>
+      <option *ngFor="let city of cities" value="{{city.Id}}">{{city.Name}}</option>
+    </select>
+  <br />
+  <button type="submit" (click)="Save()">Save</button>
+
+</div>
+<br /><br />
+<h4>
+  Existing Patients</h4>
+<div>
+  <table border="1">
+    <tr>
+      <th> Name</th>
+      <th> DOB</th>
+      <th> Gender</th>
+    </tr>
+    <tr *ngFor="let p of allPatients">
+      <td>{{p.Name}}</td>
+      <td>{{p.DOB | date}}</td>
+      <td>{{p.Gender}}</td>
+    </tr>
+  </table>
+</div>
