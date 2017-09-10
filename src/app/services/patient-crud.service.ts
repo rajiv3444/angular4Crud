@@ -50,3 +50,139 @@ export class PatientCrudService {
 
 
 }
+
+
+/*
+web api controllers and models
+-------------------------------
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Mvc;
+using patientApi.Models;
+
+namespace patientApi.Controllers
+{
+   
+    public class StateController : Controller
+    {
+        static List<Patient> patientsList = new List<Patient>();
+
+        // GET: api/values
+        [Route("api/GetStates")]
+        [HttpGet]
+        public IEnumerable<State> GetStates()
+        {
+            //return new string[] { "value1", "value2" };
+            var state = new State();
+            state.Id = 1;
+            state.Name = "MH";
+            var state2 = new State();
+            state2.Id = 2;
+            state2.Name = "GJ";
+            State[] states = new State[] { state, state2 };
+            return states;
+        }
+
+        // GET api/GetCitiesForState/5
+        [Route("api/GetCity")]
+        [HttpGet]
+        public IEnumerable<City> GetCity(int sid)
+        {
+            List<City> cities = new List<City>();
+
+            cities.Add(new City { Id = 1, Name = "pune", StateId = 1 });
+            cities.Add(new City { Id = 2, Name = "mum", StateId = 1 });
+            cities.Add(new City { Id = 3, Name = "ahmd", StateId = 2 });
+            cities.Add(new City { Id = 4, Name = "baroda", StateId = 2 });
+
+            return cities.Where(c=>c.StateId == sid).ToList();
+        }
+
+        // POST api/values
+        [Route("api/SavePatient")]
+        [HttpPost]
+        public void Post([FromBody]Patient patient)
+        {
+            if (patient != null)
+            {
+                patientsList.Add(patient);
+            }
+        }
+
+        [Route("api/GetAllPatients")]
+        [HttpGet]
+        public List<Patient> GetAllPatients()
+        {
+            //var pat = new Patient();
+            //pat.Name = "test";
+            //pat.DOB = DateTime.Now;
+            //pat.Gender = "Male";
+            //patientsList.Add(pat);
+            return patientsList;
+
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
+    }
+}
+---------------------
+Models
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace patientApi.Models
+{
+    public class State
+    {
+        public int Id { get; set; }
+        public string Name{ get; set; }
+    }
+}
+-------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace patientApi.Models
+{
+    public class Patient
+    {
+        //public int Id{ get; set; }
+        public string Name{ get; set; }
+        public DateTime DOB{ get; set; }
+        public string Gender { get; set; }
+    }
+}
+-----
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace patientApi.Models
+{
+    public class City
+    {
+        public int Id { get; set; }
+        public int StateId { get; set; }
+        public string Name{ get; set; }
+    }
+}
+
+/*
