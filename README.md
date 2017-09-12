@@ -1,6 +1,10 @@
-# HMS
+# Patient registration form
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
+## Assignment Details
+1. Fetch all the patients and display.
+2. Fetch all states and cities for respective dropdown, the cities dropdown should be state wise filtered.
+3. DOB of patient must not be less than 100 years and must not be greater than today
+4. Save the patient details to DB
 
 ## Development server
 
